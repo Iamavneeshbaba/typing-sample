@@ -52,3 +52,31 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+#keyboard {
+  margin-top: 20px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  margin: 3px;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+
+.key.active {
+  background-color: #4CAF50;
+  color: white;
+}

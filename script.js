@@ -4,6 +4,7 @@ let isTyping = false;
 let wordsTyped = 0;
 let correctChars = 0;
 let totalChars = 0;
+let isTestFinished = false;
 
 const quoteElement = document.getElementById("quote");
 const userInput = document.getElementById("user-input");
@@ -11,6 +12,7 @@ const timeElement = document.getElementById("time");
 const wpmElement = document.getElementById("wpm");
 const accuracyElement = document.getElementById("accuracy");
 const startBtn = document.getElementById("start-btn");
+const keyboardKeys = document.querySelectorAll(".key");
 
 const quotes = [
   "The quick brown fox jumps over the lazy dog.",
@@ -26,6 +28,7 @@ function startTest() {
   wordsTyped = 0;
   correctChars = 0;
   totalChars = 0;
+  isTestFinished = false;
 
   // Pick a random quote
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -41,7 +44,7 @@ function startTest() {
 }
 
 function updateTime() {
-  if (isTyping) {
+  if (isTyping && !isTestFinished) {
     timeElapsed++;
     timeElement.textContent = timeElapsed;
     calculateStats();
@@ -69,6 +72,7 @@ function checkInput() {
   correctChars = correct;
 
   calculateStats();
+  highlightKeys(input);
 }
 
 function calculateStats() {
@@ -78,8 +82,23 @@ function calculateStats() {
   wpmElement.textContent = wpm;
   accuracyElement.textContent = accuracy;
 
-  if (userInput.value === quoteElement.textContent) {
+  if (userInput.value === quoteElement.textContent && !isTestFinished) {
     clearInterval(timer);
-    alert("Test Complete! You typed the text correctly.");
+    isTestFinished = true;
+    setTimeout(() => alert("Test Complete! You typed the text correctly."), 100);
+  }
+}
+
+function highlightKeys(input) {
+  // Remove active class from all keys
+  keyboardKeys.forEach(key => key.classList.remove("active"));
+
+  // Highlight keys based on the input
+  for (let i = 0; i < input.length; i++) {
+    const keyId = "key-" + input[i].toUpperCase();
+    const keyElement = document.getElementById(keyId);
+    if (keyElement) {
+      keyElement.classList.add("active");
+    }
   }
 }

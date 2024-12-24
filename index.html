@@ -10,13 +10,28 @@
   <div class="container">
     <h1>Typing Speed Test</h1>
     <p id="quote">Start typing the text below</p>
-    <textarea id="user-input" placeholder="Start typing here..." oninput="checkInput()"></textarea>
+    <textarea id="user-input" placeholder="Start typing here..." oninput="checkInput()" autofocus></textarea>
     <div id="stats">
       <p>Time: <span id="time">0</span> seconds</p>
       <p>Words per minute: <span id="wpm">0</span></p>
       <p>Accuracy: <span id="accuracy">100</span>%</p>
     </div>
     <button id="start-btn" onclick="startTest()">Start Test</button>
+    <div id="keyboard">
+      <div class="keyboard-row">
+        <div class="key" id="key-Q">Q</div>
+        <div class="key" id="key-W">W</div>
+        <div class="key" id="key-E">E</div>
+        <div class="key" id="key-R">R</div>
+        <div class="key" id="key-T">T</div>
+        <div class="key" id="key-Y">Y</div>
+        <div class="key" id="key-U">U</div>
+        <div class="key" id="key-I">I</div>
+        <div class="key" id="key-O">O</div>
+        <div class="key" id="key-P">P</div>
+      </div>
+      <!-- Repeat for other rows as necessary -->
+    </div>
   </div>
 
   <script src="script.js"></script>
